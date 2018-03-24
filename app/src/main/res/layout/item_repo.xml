@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/min_margin"
+        android:layout_marginStart="@dimen/min_margin"
+        android:layout_marginTop="@dimen/min_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintWidth_percent="0.55"
+        tools:text="@android:string/VideoView_error_text_invalid_progressive_playback" />
+
+    <ImageView
+        android:id="@+id/fork_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/min_margin"
+        android:tint="@color/buttercup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:srcCompat="@drawable/ic_call_merge_black_18px" />
+
+    <ImageView
+        android:id="@+id/star_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        android:tint="@color/buttercup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fork_size"
+        app:layout_constraintTop_toTopOf="@+id/fork_icon"
+        app:srcCompat="@drawable/ic_star_black_18px" />
+
+    <TextView
+        android:id="@+id/fork_size"
+        style="@style/text_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/min_margin"
+        android:layout_marginStart="@dimen/min_margin"
+        app:layout_constraintStart_toEndOf="@+id/fork_icon"
+        app:layout_constraintTop_toTopOf="@+id/fork_icon"
+        tools:text="@android:string/status_bar_notification_info_overflow" />
+
+    <TextView
+        android:id="@+id/star_size"
+        style="@style/text_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/min_margin"
+        android:layout_marginStart="@dimen/min_margin"
+        app:layout_constraintStart_toEndOf="@+id/star_icon"
+        app:layout_constraintTop_toTopOf="@+id/fork_icon"
+        tools:text="@android:string/status_bar_notification_info_overflow" />
+
+    <ImageView
+        android:id="@+id/user_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/min_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/description"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_account_circle_black_24px" />
+
+    <TextView
+        android:id="@+id/user_nick"
+        style="@style/user_nick_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/min_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/user_icon"
+        tools:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/pull_date_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/min_margin"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minLines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/french_gray"
+        app:layout_constraintEnd_toEndOf="@+id/user_nick"
+        app:layout_constraintStart_toStartOf="@+id/user_nick"
+        app:layout_constraintTop_toBottomOf="@+id/user_nick"
+        tools:text="@android:string/VideoView_error_text_invalid_progressive_playback"
+         />
+
+
+
+</android.support.constraint.ConstraintLayout>
