@@ -1,21 +1,24 @@
 package br.com.tramalho.githubmvpkotlin.presentation
 
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import br.com.tramalho.githubmvpkotlin.R
 import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
+import br.com.tramalho.githubmvpkotlin.infraestructure.inflateLayoutRow
 
 /**
  * Created by trama on 23/03/18.
  */
-class RepoListAdapter(private val itens: MutableList<RepoModel>) : RecyclerView.Adapter<RepoViewHolder>() {
+class RepoListAdapter(private val itens: MutableList<RepoModel>, var onItemClick: OnItemClick?) : RecyclerView.Adapter<RepoViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RepoViewHolder {
+    interface OnItemClick{
+        fun onClick(repoEntity: RepoModel)
+    }
 
-        val layoutInflater = LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
+        val layoutRow = inflateLayoutRow(parent, R.layout.item_repo)
 
-        return RepoViewHolder(layoutInflater.inflate(R.layout.item_repo, parent, false))
+        return RepoViewHolder(layoutRow, onItemClick)
     }
 
     override fun getItemCount(): Int {
@@ -27,7 +30,7 @@ class RepoListAdapter(private val itens: MutableList<RepoModel>) : RecyclerView.
         holder.bind(repoModel)
     }
 
-    fun updateItens(repoModel: List<RepoModel>) : Unit {
+    fun updateItens(repoModel: List<RepoModel>) {
         itens.addAll(repoModel)
         notifyDataSetChanged()
     }

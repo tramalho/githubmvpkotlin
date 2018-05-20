@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/pull_name_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/astral"
+        android:textStyle="bold"
+        tools:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/pull_description_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minLines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pull_name_id"
+        tools:text="@android:string/VideoView_error_text_invalid_progressive_playback" />
+
+    <ImageView
+        android:id="@+id/pull_user_avatar_id"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/pull_description_id"
+        tools:srcCompat="@drawable/ic_account_circle_black_24px" />
+
+    <TextView
+        android:id="@+id/repo_nick_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/curious_blue"
+        app:layout_constraintStart_toEndOf="@+id/pull_user_avatar_id"
+        app:layout_constraintTop_toTopOf="@+id/pull_user_avatar_id"
+        tools:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/pull_date_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minLines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/french_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pull_user_avatar_id"
+        app:layout_constraintTop_toBottomOf="@+id/repo_nick_id"
+        tools:text="@android:string/emptyPhoneNumber" />
+
+
+</android.support.constraint.ConstraintLayout>

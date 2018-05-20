@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="br.com.tramalho.githubmvpkotlin.presentation.PullDetailActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/repoListRecycler"
+        android:id="@+id/pullRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
@@ -19,10 +20,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-         />
+        />
 
     <ProgressBar
-        android:id="@+id/show_item_progressBar"
+        android:id="@+id/showPullProgressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,21 +32,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/curious_blue"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:visibility="visible">
 
-        <ProgressBar
-            android:id="@+id/show_more_progress"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="@dimen/min_margin" />
-    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

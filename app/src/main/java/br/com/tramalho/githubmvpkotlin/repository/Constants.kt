@@ -4,5 +4,6 @@ class Constants {
   companion object {
     val BASE_URL = "https://api.github.com"
     val REPO_URL = "search/repositories"
+    val PULL_URL = "repos/{creator}/{repo}/pulls"
   }
 }

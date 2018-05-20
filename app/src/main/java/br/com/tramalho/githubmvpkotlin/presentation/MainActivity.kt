@@ -7,26 +7,23 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import br.com.tramalho.githubmvpkotlin.R
 import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
-import br.com.tramalho.githubmvpkotlin.interactor.RepoUseCase
+import br.com.tramalho.githubmvpkotlin.infraestructure.DataStatus
+import br.com.tramalho.githubmvpkotlin.interactor.UseCase
 import br.com.tramalho.githubmvpkotlin.presentation.presenter.RepoPresenter
-import br.com.tramalho.githubmvpkotlin.presentation.utils.showShort
+import br.com.tramalho.githubmvpkotlin.infraestructure.showShort
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), RepoPresenter.RepoContractView {
-
-    enum class DataStatus{
-        HAS_ITENS, ERROR, NO_ITENS
-    }
+class MainActivity : AppCompatActivity(), RepoPresenter.RepoContractView, RepoListAdapter.OnItemClick {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupReciclerView()
-        init()
+        initialize()
     }
 
-    private fun init() {
-        RepoPresenter(this, RepoUseCase())
+    private fun initialize() {
+        RepoPresenter(this, UseCase())
                 .retrieve("java", "stars")
     }
 
@@ -34,12 +31,12 @@ class MainActivity : AppCompatActivity(), RepoPresenter.RepoContractView {
 
         repoListRecycler.layoutManager = LinearLayoutManager(this)
 
-        repoListRecycler.adapter = RepoListAdapter(mutableListOf<RepoModel>())
+        repoListRecycler.adapter = RepoListAdapter(mutableListOf<RepoModel>(), this)
     }
 
     override fun onSuccess(result: List<RepoModel>) {
         val adapter = this.repoListRecycler.adapter as RepoListAdapter
-        adapter.updateItens(repoModel = result)
+        adapter.updateItens(result)
         updateVisibility(DataStatus.HAS_ITENS)
     }
 
@@ -61,7 +58,10 @@ class MainActivity : AppCompatActivity(), RepoPresenter.RepoContractView {
     }
 
     override fun onError() {
-        showShort(this, "Falha")
+        showShort("Falha")
     }
 
+    override fun onClick(repoEntity: RepoModel) {
+        PullDetailActivity.launchActivity(this , repoEntity)
+    }
 }

@@ -6,13 +6,20 @@ import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
 import kotlinx.android.synthetic.main.item_repo.view.*
 
 
-class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class RepoViewHolder(itemView: View?, val onItemClick: RepoListAdapter.OnItemClick?) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(repoEntity: RepoModel) {
-        itemView.name.text = repoEntity.name
-        itemView.fullName.text = repoEntity.fullName
-        itemView.fork_size.text = repoEntity.forksCount.toString()
-        itemView.star_size.text = repoEntity.stargazersCount.toString()
-        //itemView.user_nick.text = repoEntity.u
+
+        with(itemView) {
+            name.text = repoEntity.name
+            fullName.text = repoEntity.fullName
+            fork_size.text = repoEntity.forksCount.toString()
+            star_size.text = repoEntity.stargazersCount.toString()
+            user_nick.text = repoEntity.repoOwner?.login
+
+            setOnClickListener {
+                onItemClick?.onClick(repoEntity)
+            }
+        }
     }
 }

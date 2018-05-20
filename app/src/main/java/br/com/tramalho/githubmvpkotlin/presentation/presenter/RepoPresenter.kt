@@ -1,9 +1,9 @@
 package br.com.tramalho.githubmvpkotlin.presentation.presenter
 
 import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
-import br.com.tramalho.githubmvpkotlin.interactor.RepoUseCase
+import br.com.tramalho.githubmvpkotlin.interactor.UseCase
 
-class RepoPresenter(private val contractView: RepoContractView, val repoUseCase: RepoUseCase) {
+class RepoPresenter(private val contractView: RepoContractView, val useCase: UseCase) {
 
     interface RepoContractView{
         fun onSuccess(result : List<RepoModel>)
@@ -11,11 +11,11 @@ class RepoPresenter(private val contractView: RepoContractView, val repoUseCase:
     }
 
     fun retrieve(language: String, sort: String) {
-        repoUseCase.retrieve(language, sort, PresenterCallBack(contractView))
+        useCase.retriveRepos(language, sort, PresenterCallBack(contractView))
     }
 
     private class PresenterCallBack(private val contractView: RepoPresenter.RepoContractView) :
-            RepoUseCase.RepoUseCaseContract {
+            UseCase.UseCaseContract<RepoModel> {
 
         override fun onSuccess(result : List<RepoModel>) {
             contractView.onSuccess(result)
