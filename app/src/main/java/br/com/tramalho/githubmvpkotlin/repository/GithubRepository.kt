@@ -7,6 +7,7 @@ import br.com.tramalho.githubmvpkotlin.data.model.PullModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.net.URL
+import javax.inject.Inject
 
 class GithubRepository {
 

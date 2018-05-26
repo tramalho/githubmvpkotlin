@@ -35,7 +35,7 @@ fun <T : RecyclerView.ViewHolder?> RecyclerView.Adapter<T>.inflateLayoutRow(pare
 
 fun ImageView.loadFromRemote(url: String, rIdError: Int = R.drawable.ic_account_circle_black_24px) {
 
-   if (!TextUtils.isEmpty(url)) {
+    if (!TextUtils.isEmpty(url)) {
 
         Glide.with(context)
                 .load(url)

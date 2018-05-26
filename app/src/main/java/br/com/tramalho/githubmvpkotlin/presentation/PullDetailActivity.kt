@@ -11,13 +11,14 @@ import kotlinx.android.synthetic.main.activity_pull_detail.*
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import br.com.tramalho.githubmvpkotlin.data.model.PullModel
+import br.com.tramalho.githubmvpkotlin.infraestructure.CustomApplication
 import br.com.tramalho.githubmvpkotlin.infraestructure.DataStatus
 import br.com.tramalho.githubmvpkotlin.infraestructure.showShort
-import br.com.tramalho.githubmvpkotlin.interactor.UseCase
 import br.com.tramalho.githubmvpkotlin.presentation.presenter.PullRequestPresenter
+import javax.inject.Inject
 
 
-class PullDetailActivity : AppCompatActivity(), PullRequestPresenter.PullContractView {
+class PullDetailActivity: AppCompatActivity(), PullRequestPresenter.PullContractView {
 
     companion object {
 
@@ -34,18 +35,27 @@ class PullDetailActivity : AppCompatActivity(), PullRequestPresenter.PullContrac
 
     private var repoModel: RepoModel? = null
 
+    @Inject
+    protected lateinit  var pullRequestPresenter: PullRequestPresenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pull_detail)
-
+        inject()
         extractIntentData(savedInstanceState)
         configActionBar(repoModel?.name)
         setupRecyclerView()
         initialize()
     }
 
+    private fun inject() {
+        val customApplication = application as CustomApplication
+        customApplication.builder().inject(this)
+        pullRequestPresenter.contractView = this
+    }
+
     private fun initialize() {
-        PullRequestPresenter(this, UseCase()).retrieve(repoModel!!)
+        pullRequestPresenter.retrieve(repoModel!!)
     }
 
     private fun setupRecyclerView() {
@@ -61,8 +71,6 @@ class PullDetailActivity : AppCompatActivity(), PullRequestPresenter.PullContrac
             repoModel = savedInstanceState.getParcelable(PULL_EXTRA)
         }
     }
-
-
 
     private fun updateVisibility(status: DataStatus) {
 

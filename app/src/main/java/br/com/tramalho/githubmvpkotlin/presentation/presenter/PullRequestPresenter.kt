@@ -4,7 +4,9 @@ import br.com.tramalho.githubmvpkotlin.data.model.PullModel
 import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
 import br.com.tramalho.githubmvpkotlin.interactor.UseCase
 
-class PullRequestPresenter(private val contractView: PullContractView, val useCase: UseCase) {
+class PullRequestPresenter(private val useCase: UseCase) {
+
+    lateinit var contractView: PullContractView
 
     interface PullContractView{
         fun onSuccess(result : List<PullModel>)

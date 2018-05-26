@@ -7,9 +7,10 @@ import br.com.tramalho.githubmvpkotlin.repository.GithubRepository
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
+import javax.inject.Singleton
 
-
-class UseCase {
+@Singleton
+class UseCase(private val githubRepository: GithubRepository) {
 
     interface UseCaseContract<T> {
         fun onSuccess(result: List<T>)
@@ -17,7 +18,7 @@ class UseCase {
     }
 
     fun retriveRepos(language: String, sort: String, contract: UseCaseContract<RepoModel>) {
-        val request = { GithubRepository().listByFilter(sort, language) }
+        val request = { githubRepository.listByFilter(sort, language) }
 
         val actionSuccess = { result:Any ->
             if (result is GithubRepoResponse) {
@@ -32,7 +33,7 @@ class UseCase {
 
         val request = {
             val owner = repoModel.repoOwner
-            GithubRepository().pullRequestRepo(owner?.login, repoModel.name)
+            githubRepository.pullRequestRepo(owner?.login, repoModel.name)
         }
 
         runAsync(request) { res ->

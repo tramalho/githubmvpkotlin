@@ -7,24 +7,34 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import br.com.tramalho.githubmvpkotlin.R
 import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
+import br.com.tramalho.githubmvpkotlin.infraestructure.CustomApplication
 import br.com.tramalho.githubmvpkotlin.infraestructure.DataStatus
-import br.com.tramalho.githubmvpkotlin.interactor.UseCase
 import br.com.tramalho.githubmvpkotlin.presentation.presenter.RepoPresenter
 import br.com.tramalho.githubmvpkotlin.infraestructure.showShort
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), RepoPresenter.RepoContractView, RepoListAdapter.OnItemClick {
+
+    @Inject
+    protected lateinit var repoPresenter: RepoPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        inject()
         setupReciclerView()
         initialize()
     }
 
+    private fun inject() {
+        val customApplication = application as CustomApplication
+        customApplication.builder().inject(this)
+        repoPresenter.contractView = this
+    }
+
     private fun initialize() {
-        RepoPresenter(this, UseCase())
-                .retrieve("java", "stars")
+        repoPresenter.retrieve("java", "stars")
     }
 
     private fun setupReciclerView() {
