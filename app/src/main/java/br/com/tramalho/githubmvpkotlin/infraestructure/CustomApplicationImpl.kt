@@ -3,7 +3,7 @@ package br.com.tramalho.githubmvpkotlin.infraestructure
 import android.app.Application
 import br.com.tramalho.githubmvpkotlin.di.ComponentBuilder
 
-class CustomApplicationImpl : Application(), CustomApplication {
+open class CustomApplicationImpl : Application() {
 
-    override fun builder() = ComponentBuilder()
+    open fun builder() = ComponentBuilder()
 }

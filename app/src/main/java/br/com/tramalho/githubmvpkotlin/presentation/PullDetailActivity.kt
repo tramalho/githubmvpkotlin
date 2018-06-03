@@ -6,14 +6,11 @@ import android.os.Bundle
 import br.com.tramalho.githubmvpkotlin.R
 import android.content.Intent
 import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
-import br.com.tramalho.githubmvpkotlin.infraestructure.configActionBar
 import kotlinx.android.synthetic.main.activity_pull_detail.*
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import br.com.tramalho.githubmvpkotlin.data.model.PullModel
-import br.com.tramalho.githubmvpkotlin.infraestructure.CustomApplication
-import br.com.tramalho.githubmvpkotlin.infraestructure.DataStatus
-import br.com.tramalho.githubmvpkotlin.infraestructure.showShort
+import br.com.tramalho.githubmvpkotlin.infraestructure.*
 import br.com.tramalho.githubmvpkotlin.presentation.presenter.PullRequestPresenter
 import javax.inject.Inject
 
@@ -49,7 +46,7 @@ class PullDetailActivity: AppCompatActivity(), PullRequestPresenter.PullContract
     }
 
     private fun inject() {
-        val customApplication = application as CustomApplication
+        val customApplication = application as CustomApplicationImpl
         customApplication.builder().inject(this)
         pullRequestPresenter.contractView = this
     }
@@ -90,7 +87,6 @@ class PullDetailActivity: AppCompatActivity(), PullRequestPresenter.PullContract
         val adapter = pullRecyclerView.adapter as PullListAdapter
         adapter.updateItens(result)
         updateVisibility(DataStatus.HAS_ITENS)
-
     }
 
     override fun onError() {

@@ -7,7 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import br.com.tramalho.githubmvpkotlin.R
 import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
-import br.com.tramalho.githubmvpkotlin.infraestructure.CustomApplication
+import br.com.tramalho.githubmvpkotlin.infraestructure.CustomApplicationImpl
 import br.com.tramalho.githubmvpkotlin.infraestructure.DataStatus
 import br.com.tramalho.githubmvpkotlin.presentation.presenter.RepoPresenter
 import br.com.tramalho.githubmvpkotlin.infraestructure.showShort
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), RepoPresenter.RepoContractView, RepoLi
     }
 
     private fun inject() {
-        val customApplication = application as CustomApplication
+        val customApplication = application as CustomApplicationImpl
         customApplication.builder().inject(this)
         repoPresenter.contractView = this
     }

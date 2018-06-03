@@ -5,9 +5,9 @@ import br.com.tramalho.githubmvpkotlin.di.component.PresenterComponent
 import br.com.tramalho.githubmvpkotlin.presentation.MainActivity
 import br.com.tramalho.githubmvpkotlin.presentation.PullDetailActivity
 
-class ComponentBuilder {
+open class ComponentBuilder {
 
-    private fun builder(): PresenterComponent {
+    protected open fun builder(): PresenterComponent {
         return DaggerPresenterComponent
                 .builder()
                 .build()

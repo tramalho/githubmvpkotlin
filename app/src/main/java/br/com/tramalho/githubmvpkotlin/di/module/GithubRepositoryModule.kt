@@ -5,10 +5,10 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class GithubRepositoryModule {
+open class GithubRepositoryModule {
 
     @Provides
-    fun providesRepository(): GithubRepository {
+    open fun providesRepository(): GithubRepository {
         return GithubRepository()
     }
 }

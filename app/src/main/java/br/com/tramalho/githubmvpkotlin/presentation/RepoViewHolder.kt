@@ -6,7 +6,8 @@ import br.com.tramalho.githubmvpkotlin.data.model.RepoModel
 import kotlinx.android.synthetic.main.item_repo.view.*
 
 
-class RepoViewHolder(itemView: View?, val onItemClick: RepoListAdapter.OnItemClick?) : RecyclerView.ViewHolder(itemView) {
+class RepoViewHolder(itemView: View?, val onItemClick: RepoListAdapter.OnItemClick?) :
+        RecyclerView.ViewHolder(itemView) {
 
     fun bind(repoEntity: RepoModel) {
 

@@ -9,9 +9,9 @@ import com.google.gson.reflect.TypeToken
 import java.net.URL
 import javax.inject.Inject
 
-class GithubRepository {
+open class GithubRepository {
 
-    fun listByFilter(sort: String, language: String): GithubRepoResponse {
+    open fun listByFilter(sort: String, language: String): GithubRepoResponse {
 
         val url = composeUrlRepo(language, sort)
         val readText = url.readText()
